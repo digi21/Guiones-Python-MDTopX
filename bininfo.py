@@ -6,8 +6,8 @@ def bininfo():
     Simula la orden BININFO de Digi3D: Muestra en el panel de resultados el número de geometrías que tiene el archivo de dibujo
     cargado agrupándolas por su tipo (línea, texto, etc.) e indicando la cantidad de geometrías eliminadas.
 
-    Este ejemplo demuestra que los objetos devueltos por "currentView" son iterables: En caso de que la vista sea de tipo "drawingView"
-    la iteración devuelve objetos de tipo "line", "text", "complex", "clotoid". Todos estos objetos heredan de la clase "geometry" que
+    Este ejemplo demuestra que los objetos devueltos por "current_view" son iterables: En caso de que la vista sea de tipo "DrawingView"
+    la iteración devuelve objetos de tipo "Line", "Text", "Complex", "Clotoid". Todos estos objetos heredan de la clase "Geometry" que
     proporciona una propiedad de solo lectura denominada "deleted" que indica si la geometría está o no eliminada.
     '''
     view = current_view()
