@@ -10,23 +10,23 @@ def bininfo():
     la iteración devuelve objetos de tipo "line", "text", "complex", "clotoid". Todos estos objetos heredan de la clase "geometry" que
     proporciona una propiedad de solo lectura denominada "deleted" que indica si la geometría está o no eliminada.
     '''
-    view = currentView()
+    view = current_view()
 
     if view is None:
         raise Exception("No tienes abierta ninguna ventana")
 
-    if view is None or type(view) != drawingView:
+    if view is None or type(view) != DrawingView:
         raise Exception("La ventana abierta no es una ventana de dibujo")
 
-    noEliminadas = Counter(type(x) for x in view if not x.deleted)
+    no_eliminadas = Counter(type(x) for x in view if not x.deleted)
     eliminadas = Counter(type(x) for x in view if x.deleted)
 
-    def imprime(titulo, tipo, noEliminadas, eliminadas):
-        print("{}: {} de las cuales {} eliminadas".format(titulo, noEliminadas[tipo] + eliminadas[tipo], eliminadas[tipo]))
+    def imprime(titulo, tipo, no_eliminadas, eliminadas):
+        print("{}: {} de las cuales {} eliminadas".format(titulo, no_eliminadas[tipo] + eliminadas[tipo], eliminadas[tipo]))
 
-    imprime("Líneas", line, noEliminadas, eliminadas)
-    imprime("Textos", text, noEliminadas, eliminadas)
-    imprime("Complejos", complex, noEliminadas, eliminadas)
-    imprime("Clotoides", clotoid, noEliminadas, eliminadas)
+    imprime("Líneas", Line, no_eliminadas, eliminadas)
+    imprime("Textos", Text, no_eliminadas, eliminadas)
+    imprime("Complejos", Complex, no_eliminadas, eliminadas)
+    imprime("Clotoides", Clotoid, no_eliminadas, eliminadas)
 
 bininfo()
