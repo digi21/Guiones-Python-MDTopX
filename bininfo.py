@@ -1,7 +1,7 @@
 from mdtopx import *
 from collections import Counter
 
-def bininfo():
+def bininfo(view):
     '''
     Simula la orden BININFO de Digi3D: Muestra en el panel de resultados el número de geometrías que tiene el archivo de dibujo
     cargado agrupándolas por su tipo (línea, texto, etc.) e indicando la cantidad de geometrías eliminadas.
@@ -10,14 +10,6 @@ def bininfo():
     la iteración devuelve objetos de tipo "Line", "Text", "Complex", "Clotoid". Todos estos objetos heredan de la clase "Geometry" que
     proporciona una propiedad de solo lectura denominada "deleted" que indica si la geometría está o no eliminada.
     '''
-    view = current_view()
-
-    if view is None:
-        raise Exception("No tienes abierta ninguna ventana")
-
-    if view is None or type(view) != DrawingView:
-        raise Exception("La ventana abierta no es una ventana de dibujo")
-
     no_eliminadas = Counter(type(x) for x in view if not x.deleted)
     eliminadas = Counter(type(x) for x in view if x.deleted)
 
@@ -29,4 +21,11 @@ def bininfo():
     imprime("Complejos", Complex, no_eliminadas, eliminadas)
     imprime("Clotoides", Clotoid, no_eliminadas, eliminadas)
 
-bininfo()
+view = current_view()
+if view is None:
+    raise Exception("No tienes abierta ninguna ventana")
+
+if view is None or type(view) != DrawingView:
+    raise Exception("La ventana abierta no es una ventana de dibujo")
+
+bininfo(view)
