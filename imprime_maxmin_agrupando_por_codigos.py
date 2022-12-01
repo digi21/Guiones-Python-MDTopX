@@ -15,7 +15,7 @@ def imprime_maxmin_agrupando_por_codigos():
 
     maxmin = {}
 
-    for g in current_view():
+    for g in view:
         if g.code not in maxmin:
             maxmin[g.code] = (g.min, g.max)
         else:
